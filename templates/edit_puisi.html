@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>GENERATOR PUISI</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">`
+
+</head>
+<body class="bg-dark d-flex flex-column min-vh-100">
+    <div class="card container bg-dark text-light border-0">
+      <div class="row g-3 mx-2">
+        <div class="col-lg-6">
+          <h1 class="my-4 mx-3">Edit Puisi</h1>
+          <form name="my_form" action="" method="post" >
+            {% if data_puisi %}
+              <div class="col-md-6 mb-3">
+                <label for="judul" class="form-label text-secondary">judul</label>
+                <input type="text" class="form-control bg-transparent border-0 border-bottom border rounded-0 text-light" name="judul" id="id_judul" value="{{ data_puisi['judul'] }}">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="author" class="form-label text-secondary">author</label>
+                <input type="text" class="form-control bg-transparent border-0 border-bottom border rounded-0 text-light" name="author" id="id_author" value="{{ session.username }}" readonly>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="puisi" class="form-label text-secondary">puisi</label>
+                <textarea class="form-control bg-transparent border-0 border-bottom border rounded-0 text-light" name="puisi" id="id_puisi" cols="30" rows="10" >{{ data_puisi['puisi'] }}</textarea>
+              </div>
+              <div class="mb-3">
+                <a class="btn btn-danger" href="javascript:history.back()">Batal</a>
+                <button class="btn btn-secondary" type="submit" >Simpan</button>
+              </div>
+            {% endif %}
+          </form>
+        </div>
+        <div class="col-lg-6 text-center">
+          <pre class="blockquote mt-5" id="textResponsif">
+            <h3 id="pre_judul"></h3>
+            <p id="pre_puisi"></p>
+            <figcaption class="blockquote-footer">Puisi karya {{ session.username }}</figcaption>
+          </pre>
+        </div>
+      </div>
+    </div>
+    {% include "footer.html" %}
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js" integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i" crossorigin="anonymous"></script>
+</body>
+</html>
